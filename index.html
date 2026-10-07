@@ -304,14 +304,22 @@ async function gasGet(action, extra) {
 
 async function gasPost(body) {
   if (!cfg.url) return null;
+
   try {
     var r = await fetch(cfg.url, {
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body: JSON.stringify(body),
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify(body)
     });
+
     return await r.json();
-  } catch(e) { console.error("POST", e); return null; }
+
+  } catch(e) {
+    console.error("POST", e);
+    return null;
+  }
 }
 
 // ─────────────────────────────────────────────
